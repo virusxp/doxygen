@@ -26,6 +26,10 @@
 #include "dotnode.h"
 #include "dotfilepatcher.h"
 
+// DEBUG
+#include <iostream>
+// DEBUG
+
 #define MAP_CMD "cmapx"
 
 //QCString DotGraph::DOT_FONTNAME; // will be initialized in initDot
@@ -103,6 +107,34 @@ static bool insertMapFile(FTextStream &out,const QCString &mapFile,
   return FALSE; // no map file yet, need to generate it
 }
 
+static bool checkCache(QCString const & cacheName)
+{
+  if (Doxygen::dotCacheDir.isEmpty())
+  {
+    return FALSE;
+  }
+
+  QFileInfo fi(Doxygen::dotCacheDir + cacheName);
+  return fi.exists() && fi.size()>0;
+}
+
+static void copyFromCache(QCString const& cacheName, QCString const& absFileName)
+{
+  QFile f(absFileName);
+  if (f.exists()) f.remove();
+  copyFile(Doxygen::dotCacheDir + cacheName, absFileName);
+}
+
+void copyToCache(QCString const& absFileName, QCString const& cacheName)
+{
+  if (Doxygen::dotCacheDir.isEmpty())
+    return;
+
+  QFile f(cacheName);
+  if (f.exists()) f.remove();
+  copyFile(absFileName, Doxygen::dotCacheDir + cacheName);
+}
+
 //--------------------------------------------------------------------
 
 QCString DotGraph::imgName() const
@@ -167,6 +199,15 @@ bool DotGraph::prepareDotFile()
   {
     // all needed files are there
     removeDotGraph(absDotName());
+    return FALSE;
+  }
+
+  // check if we have them in cache
+  if (checkCache(sigStr + '.' + getDotImageExtension()) && (m_graphFormat == GOF_BITMAP && m_generateImageMap ? checkCache(sigStr + ".map") : TRUE))
+  {
+    // the needed files are in the cache
+    copyFromCache(sigStr + '.' + getDotImageExtension(), absImgName());
+    if (m_graphFormat == GOF_BITMAP && m_generateImageMap) copyFromCache(sigStr + ".map", absMapName());
     return FALSE;
   }
 

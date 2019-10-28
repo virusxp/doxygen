@@ -154,6 +154,7 @@ class Doxygen
     static GenericsSDict            *genericsDict;
     static DocGroup                  docGroup;
     static Preprocessor             *preprocessor;
+    static QCString                  dotCacheDir;
 };
 
 void initDoxygen();

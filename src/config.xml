@@ -3622,6 +3622,14 @@ remove the intermediate dot files that are used to generate the various graphs.
 ]]>
       </docs>
     </option>
+    <option type='string' id='DOT_CACHE_DIR' format='string' defval='$(DOTCACHEDIR)' depends='HAVE_DOT'>
+      <docs>
+<![CDATA[
+ The \c DOT_CACHE_DIR tag can be used to specify a cache dir for the dot
+ graphics.
+]]>
+      </docs>
+    </option>
     <option type='obsolete' id='USE_WINDOWS_ENCODING'/>
     <option type='obsolete' id='DETAILS_AT_TOP'/>
     <option type='obsolete' id='QTHELP_FILE'/>

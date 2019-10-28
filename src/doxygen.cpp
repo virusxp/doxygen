@@ -17,6 +17,10 @@
 #define _DEFAULT_SOURCE 1
 #endif
 
+// DEBUG
+#include <iostream>
+// DEBUG
+
 #include <locale.h>
 
 #include <qfileinfo.h>
@@ -175,6 +179,7 @@ bool             Doxygen::markdownSupport = TRUE;
 GenericsSDict   *Doxygen::genericsDict;
 DocGroup         Doxygen::docGroup;
 Preprocessor    *Doxygen::preprocessor = 0;
+QCString         Doxygen::dotCacheDir = "";
 
 // locally accessible globals
 static std::unordered_map< std::string, const Entry* > g_classEntries;
@@ -10424,7 +10429,6 @@ void readConfiguration(int argc, char **argv)
   /* Perlmod wants to know the path to the config file.*/
   QFileInfo configFileInfo(configName);
   setPerlModDoxyfile(configFileInfo.absFilePath().data());
-
 }
 
 /** check and resolve config options */
@@ -10541,6 +10545,20 @@ void adjustConfiguration()
   Doxygen::spaces.resize(tabSize+1);
   int sp;for (sp=0;sp<tabSize;sp++) Doxygen::spaces.at(sp)=' ';
   Doxygen::spaces.at(tabSize)='\0';
+
+  /* Set cache directory for dot graphics. */
+  // DEBUG
+  std::cout << "##############Pre:  " << Doxygen::dotCacheDir.isEmpty() << std::endl;
+  std::cout.flush();
+  // DEBUG
+  
+  Doxygen::dotCacheDir = Config_getString(DOT_CACHE_DIR);
+  Doxygen::dotCacheDir.append("/");
+
+  // DEBUG
+  std::cout << "##############Post: " << Doxygen::dotCacheDir.isEmpty() << "+" << Doxygen::dotCacheDir << std::endl;
+  std::cout.flush();
+  // DEBUG
 }
 
 #ifdef HAS_SIGNALS

@@ -101,4 +101,6 @@ class DotGraph
     int m_curNodeNumber;
 };
 
+void copyToCache(QCString const& absFileName, QCString const& cacheName);
+
 #endif

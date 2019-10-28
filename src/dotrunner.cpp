@@ -15,12 +15,17 @@
 
 #include "dotrunner.h"
 
+#include "doxygen.h"
 #include "util.h"
 #include "portable.h"
 #include "dot.h"
 #include "message.h"
 #include "ftextstream.h"
 #include "config.h"
+
+// DEBUG
+#include <iostream>
+// DEBUG
 
 // the graphicx LaTeX has a limitation of maximum size of 16384
 // To be on the save side we take it a little bit smaller i.e. 150 inch * 72 dpi
@@ -242,6 +247,32 @@ bool DotRunner::run()
       fclose(f);
     }
   }
+
+  // DEBUG
+  std::cout << "########### not yet " << Doxygen::dotCacheDir.isEmpty() << std::endl;
+  std::cout.flush();
+  // DEBUG
+  if(!Doxygen::dotCacheDir.isEmpty())
+  {
+    // DEBUG
+    std::cout << "########### success" << std::endl;
+    std::cout.flush();
+    // DEBUG
+
+    // store results in dot cache dir
+    for(li.toFirst(); (s = li.current()); ++li)
+    {
+      QCString output = s->output.data();
+      QCString ext = "";
+      int index = output.findRev('.');
+      if(index >= 0)
+      {
+        ext = output.mid(index);
+      }
+      copyToCache(s->output.data(),QCString(m_md5Hash.data()) + ext);
+    }
+  }
+
   return TRUE;
 error:
   err("Problems running dot: exit code=%d, command='%s', arguments='%s'\n",
