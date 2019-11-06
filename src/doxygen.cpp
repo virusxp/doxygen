@@ -10547,18 +10547,8 @@ void adjustConfiguration()
   Doxygen::spaces.at(tabSize)='\0';
 
   /* Set cache directory for dot graphics. */
-  // DEBUG
-  std::cout << "##############Pre:  " << Doxygen::dotCacheDir.isEmpty() << std::endl;
-  std::cout.flush();
-  // DEBUG
-  
   Doxygen::dotCacheDir = Config_getString(DOT_CACHE_DIR);
   Doxygen::dotCacheDir.append("/");
-
-  // DEBUG
-  std::cout << "##############Post: " << Doxygen::dotCacheDir.isEmpty() << "+" << Doxygen::dotCacheDir << std::endl;
-  std::cout.flush();
-  // DEBUG
 }
 
 #ifdef HAS_SIGNALS

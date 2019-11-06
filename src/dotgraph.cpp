@@ -132,7 +132,9 @@ void copyToCache(QCString const& absFileName, QCString const& cacheName)
 
   QFile f(cacheName);
   if (f.exists()) f.remove();
-  copyFile(absFileName, Doxygen::dotCacheDir + cacheName);
+
+  QFile g(absFileName);
+  if (g.exists()) copyFile(absFileName, Doxygen::dotCacheDir + cacheName);
 }
 
 //--------------------------------------------------------------------

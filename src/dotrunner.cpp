@@ -248,17 +248,8 @@ bool DotRunner::run()
     }
   }
 
-  // DEBUG
-  std::cout << "########### not yet " << Doxygen::dotCacheDir.isEmpty() << std::endl;
-  std::cout.flush();
-  // DEBUG
   if(!Doxygen::dotCacheDir.isEmpty())
   {
-    // DEBUG
-    std::cout << "########### success" << std::endl;
-    std::cout.flush();
-    // DEBUG
-
     // store results in dot cache dir
     for(li.toFirst(); (s = li.current()); ++li)
     {
