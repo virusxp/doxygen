@@ -203,20 +203,24 @@ bool DotManager::run() const
       m_queue->enqueue(dr);
     }
     // wait for the queue to become empty
-    while ((i=m_queue->count())>0)
+    while (true)
     {
-      i = numDotRuns - i;
-      while (i>=prev)
+      int j = m_queue->count();
+
+      // write the number of finished dots to log
+      i = numDotRuns - j;
+      while (i >= prev)
       {
         msg("Running dot for graph %d/%d\n",prev,numDotRuns);
         prev++;
       }
+
+      // if everything is logged and the queue is empty => break
+      if(prev >= numDotRuns)
+      {
+        break;
+      }
       Portable::sleep(100);
-    }
-    while ((int)numDotRuns>=prev)
-    {
-      msg("Running dot for graph %d/%d\n",prev,numDotRuns);
-      prev++;
     }
     // signal the workers we are done
     for (i=0;i<(int)m_workers.count();i++)
@@ -366,3 +370,4 @@ void writeDotImageMapFromFile(FTextStream &t,
   }
   d.remove(absOutFile);
 }
+
