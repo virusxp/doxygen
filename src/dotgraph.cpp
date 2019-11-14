@@ -53,6 +53,7 @@ static bool checkMd5Signature(const QCString &baseName,
     if (bytesRead==32 && md5==md5stored)
     {
       // bail out if equal
+      f.close();
       return FALSE;
     }
   }
@@ -123,6 +124,13 @@ static void copyFromCache(QCString const& cacheName, QCString const& absFileName
   QFile f(absFileName);
   if (f.exists()) f.remove();
   copyFile(Doxygen::dotCacheDir + cacheName, absFileName);
+}
+
+static void copyFromCacheAbsPath(QCString const& cacheName, QCString const& absFileName)
+{
+  QFile f(absFileName);
+  if (f.exists()) f.remove();
+  copyFile(cacheName, absFileName);  
 }
 
 void copyToCache(QCString const& absFileName, QCString const& cacheName)
@@ -226,12 +234,22 @@ bool DotGraph::prepareDotFile()
   t << m_theGraph;
   f.close();
 
+  m_dotCachedFile = (!m_dotCacheDir.isEmpty()) ? m_dotCacheDir + sigStr : "";
+  QCString outImg = absImgName(); //(m_dotCacheDir.isEmpty()) ? absImgName() : m_dotCachedFile + '.' + getDotImageExtension();
+  QCString outMap = absMapName(); //(m_dotCacheDir.isEmpty()) ? absMapName() : m_dotCachedFile + ".map";
+
   if (m_graphFormat == GOF_BITMAP)
   {
     // run dot to create a bitmap image
     DotRunner * dotRun = DotManager::instance()->createRunner(absDotName(), sigStr);
-    dotRun->addJob(Config_getEnum(DOT_IMAGE_FORMAT), absImgName());
-    if (m_generateImageMap) dotRun->addJob(MAP_CMD, absMapName());
+
+    dotRun->addJob(Config_getEnum(DOT_IMAGE_FORMAT), outImg);
+
+    if (m_generateImageMap) 
+    {
+      dotRun->addJob(MAP_CMD, outMap);
+    }
+    
   }
   else if (m_graphFormat == GOF_EPS)
   {
@@ -239,18 +257,29 @@ bool DotGraph::prepareDotFile()
     DotRunner *dotRun = DotManager::instance()->createRunner(absDotName(), sigStr);
     if (Config_getBool(USE_PDFLATEX))
     {
-      dotRun->addJob("pdf",absImgName());
+      dotRun->addJob("pdf",outImg);
     }
     else
     {
-      dotRun->addJob("ps",absImgName());
+      dotRun->addJob("ps",outImg);
     }
   }
+
+  
+
   return TRUE;
 }
 
 void DotGraph::generateCode(FTextStream &t)
 {
+  
+  // if(!m_dotCacheDir.isEmpty() && (!QFile::exists(absImgName())))
+  // {
+  //   copyFromCacheAbsPath(m_dotCachedFile + '.' + getDotImageExtension(), absImgName());
+  //   if (m_graphFormat == GOF_BITMAP && m_generateImageMap) copyFromCacheAbsPath(m_dotCachedFile + ".map", absMapName());
+  // }
+
+
   QCString imgExt = getDotImageExtension();
   if (m_graphFormat==GOF_BITMAP && m_textFormat==EOF_DocBook)
   {

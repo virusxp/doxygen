@@ -19,6 +19,7 @@
 #include <qcstring.h>
 #include <qgstring.h>
 #include <qdir.h>
+#include "doxygen.h"
 
 class FTextStream;
 class DotNode;
@@ -31,7 +32,7 @@ enum GraphType            { Dependency, Inheritance, Collaboration, Hierarchy, C
 class DotGraph
 {
   public:
-    DotGraph() : m_curNodeNumber(0), m_doNotAddImageToIndex(FALSE), m_noDivTag(FALSE), m_zoomable(TRUE), m_urlOnly(FALSE) {}
+    DotGraph() : m_curNodeNumber(0), m_doNotAddImageToIndex(FALSE), m_noDivTag(FALSE), m_zoomable(TRUE), m_urlOnly(FALSE), m_dotCacheDir(Doxygen::dotCacheDir) {}
     virtual ~DotGraph() {}
 
   protected:
@@ -79,8 +80,10 @@ class DotGraph
     QDir                   m_dir;
     QCString               m_fileName;
     QCString               m_relPath;
-    bool                   m_generateImageMap = false;
-    int                    m_graphId = 0;
+    QCString               m_dotCacheDir;
+    QCString               m_dotCachedFile;
+    bool                   m_generateImageMap;
+    int                    m_graphId;
 
     QCString               m_absPath;
     QCString               m_baseName;

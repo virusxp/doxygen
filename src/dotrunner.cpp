@@ -187,6 +187,18 @@ bool DotRunner::run()
   QListIterator<DotJob> li(m_jobs);
   DotJob *s;
 
+  // create checksum file
+  if (!m_md5Hash.isEmpty()) 
+  {
+    QCString md5Name = getBaseNameOfOutput(m_file.data()) + ".md5";
+    FILE *f = portable_fopen(md5Name,"w");
+    if (f)
+    {
+      fwrite(m_md5Hash.data(),1,32,f); 
+      fclose(f);
+    }
+  }
+
   // create output
   if (Config_getBool(DOT_MULTI_TARGETS))
   {
@@ -196,14 +208,44 @@ bool DotRunner::run()
       dotArgs+=' ';
       dotArgs+=s->args.data();
     }
+
     if ((exitCode=Portable::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+
+    if(!Doxygen::dotCacheDir.isEmpty())
+    {
+      // store results in dot cache dir
+      for(li.toFirst(); (s = li.current()); ++li)
+      {
+        QCString output = s->output.data();
+        QCString ext = "";
+        int index = output.findRev('.');
+        if(index >= 0)
+        {
+          ext = output.mid(index);
+        }
+        copyToCache(s->output.data(),QCString(m_md5Hash.data()) + ext);
+      }
+    }
   }
   else
   {
     for (li.toFirst();(s=li.current());++li)
     {
       dotArgs=QCString("\"")+m_file.data()+"\" "+s->args.data();
+
       if ((exitCode=Portable::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+
+      if(!Doxygen::dotCacheDir.isEmpty())
+      {
+        QCString output = s->output.data();
+        QCString ext = "";
+        int index = output.findRev('.');
+        if(index >= 0)
+        {
+          ext = output.mid(index).data();
+        }
+        copyToCache(s->output.data(),DotConstString(QCString(m_md5Hash.data() + ext)).data());
+      }
     }
   }
 
@@ -248,6 +290,7 @@ bool DotRunner::run()
     }
   }
 
+  /*
   if(!Doxygen::dotCacheDir.isEmpty())
   {
     // store results in dot cache dir
@@ -263,6 +306,7 @@ bool DotRunner::run()
       copyToCache(s->output.data(),QCString(m_md5Hash.data()) + ext);
     }
   }
+  */
 
   return TRUE;
 error:
