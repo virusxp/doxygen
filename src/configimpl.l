@@ -601,7 +601,11 @@ static FILE *tryPath(const char *path,const char *fileName)
   QFileInfo fi(absName);
   if (fi.exists() && fi.isFile())
   {
+<<<<<<< HEAD
     FILE *f=Portable::fopen(absName,"r");
+=======
+    FILE *f=Portables::fopen(absName,"r");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     if (!f) config_err("could not open file %s for reading\n",absName.data());
     return f;
   }
@@ -617,7 +621,11 @@ static FILE *findFile(const char *fileName)
   {
     return 0;
   }
+<<<<<<< HEAD
   if (Portable::isAbsolutePath(fileName))
+=======
+  if (Portables::isAbsolutePath(fileName))
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   {
     return tryPath(NULL, fileName);
   }
@@ -1008,7 +1016,11 @@ static void substEnvVarsInString(QCString &s)
   while ((i=re.match(s,p,&l))!=-1 || (i=re2.match(s,p,&l))!=-1)
   {
     //printf("Found environment var s.mid(%d,%d)='%s'\n",i+2,l-3,s.mid(i+2,l-3).data());
+<<<<<<< HEAD
     QCString env=Portable::getenv(s.mid(i+2,l-3));
+=======
+    QCString env=Portables::getenv(s.mid(i+2,l-3));
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     substEnvVarsInString(env); // recursively expand variables if needed.
     s = s.left(i)+env+s.right(s.length()-i-l);
     p=i+env.length(); // next time start at the end of the expanded string
@@ -1640,7 +1652,11 @@ void Config::checkAndCorrect()
     }
     else
     {
+<<<<<<< HEAD
       QFileInfo dp(dotPath+"/dot"+Portable::commandExtension());
+=======
+      QFileInfo dp(dotPath+"/dot"+Portables::commandExtension());
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       if (!dp.exists() || !dp.isFile())
       {
 	warn_uncond("the dot tool could not be found at %s\n",dotPath.data());
@@ -1668,10 +1684,17 @@ void Config::checkAndCorrect()
     QFileInfo pu(plantumlJarPath);
     if (pu.exists() && pu.isDir()) // PLANTUML_JAR_PATH is directory
     {
+<<<<<<< HEAD
       QFileInfo jar(plantumlJarPath+Portable::pathSeparator()+"plantuml.jar");
       if (jar.exists() && jar.isFile())
       {
         plantumlJarPath = jar.dirPath(TRUE).utf8()+Portable::pathSeparator();
+=======
+      QFileInfo jar(plantumlJarPath+Portables::pathSeparator()+"plantuml.jar");
+      if (jar.exists() && jar.isFile())
+      {
+        plantumlJarPath = jar.dirPath(TRUE).utf8()+Portables::pathSeparator();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       }
       else
       {
@@ -1682,7 +1705,11 @@ void Config::checkAndCorrect()
     }
     else if (pu.exists() && pu.isFile() && plantumlJarPath.right(4)==".jar") // PLANTUML_JAR_PATH is file
     {
+<<<<<<< HEAD
       plantumlJarPath = pu.dirPath(TRUE).utf8()+Portable::pathSeparator();
+=======
+      plantumlJarPath = pu.dirPath(TRUE).utf8()+Portables::pathSeparator();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     }
     else
     {
@@ -1696,7 +1723,11 @@ void Config::checkAndCorrect()
   QCString &diaPath = Config_getString(DIA_PATH);
   if (!diaPath.isEmpty())
   {
+<<<<<<< HEAD
     QFileInfo dp(diaPath+"/dia"+Portable::commandExtension());
+=======
+    QFileInfo dp(diaPath+"/dia"+Portables::commandExtension());
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     if (!dp.exists() || !dp.isFile())
     {
       warn_uncond("dia could not be found at %s\n",diaPath.data());

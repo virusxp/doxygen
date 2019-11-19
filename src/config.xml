@@ -953,7 +953,11 @@ Go to the <a href="commands.html">next</a> section or return to the
 ]]>
       </docs>
     </option>
+<<<<<<< HEAD
     <option type='bool' id='CASE_SENSE_NAMES' defval='0' altdefval='Portable::fileSystemIsCaseSensitive()'>
+=======
+    <option type='bool' id='CASE_SENSE_NAMES' defval='0' altdefval='Portables::fileSystemIsCaseSensitive()'>
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       <docs>
 <![CDATA[
  If the \c CASE_SENSE_NAMES tag is set to \c NO then doxygen

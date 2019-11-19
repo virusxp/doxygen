@@ -235,14 +235,23 @@ void CiteDict::generatePage() const
   // 5. run bib2xhtml perl script on the generated file which will insert the
   //    bibliography in citelist.doc
   int exitCode;
+<<<<<<< HEAD
   Portable::sysTimerStop();
   if ((exitCode=Portable::system("perl","\""+bib2xhtmlFile+"\" "+bibOutputFiles+" \""+
+=======
+  Portables::sysTimerStop();
+  if ((exitCode=Portables::system("perl","\""+bib2xhtmlFile+"\" "+bibOutputFiles+" \""+
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                          citeListFile+"\"")) != 0)
   {
     err("Problems running bibtex. Verify that the command 'perl --version' works from the command line. Exit code: %d\n",
         exitCode);
   }
+<<<<<<< HEAD
   Portable::sysTimerStop();
+=======
+  Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
   QDir::setCurrent(oldDir);
 

@@ -9867,13 +9867,22 @@ class NullOutlineParser : public OutlineParserInterface
 void initDoxygen()
 {
   initResources();
+<<<<<<< HEAD
   const char *lang = Portable::getenv("LC_ALL");
   if (lang) Portable::setenv("LANG",lang);
+=======
+  const char *lang = Portables::getenv("LC_ALL");
+  if (lang) Portables::setenv("LANG",lang);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   setlocale(LC_ALL,"");
   setlocale(LC_CTYPE,"C"); // to get isspace(0xA0)==0, needed for UTF-8
   setlocale(LC_NUMERIC,"C");
 
+<<<<<<< HEAD
   Portable::correct_path();
+=======
+  Portables::correct_path();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
   Doxygen::runningTime.start();
   Doxygen::preprocessor = new Preprocessor();
@@ -10922,7 +10931,11 @@ void parseInput()
   signal(SIGINT, stopDoxygen);
 #endif
 
+<<<<<<< HEAD
   uint pid = Portable::pid();
+=======
+  uint pid = Portables::pid();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   Doxygen::objDBFileName.sprintf("doxygen_objdb_%d.tmp",pid);
   Doxygen::objDBFileName.prepend(outputDirectory+"/");
   Doxygen::entryDBFileName.sprintf("doxygen_entrydb_%d.tmp",pid);
@@ -10982,6 +10995,7 @@ void parseInput()
     QCString curFontPath = Config_getString(DOT_FONTPATH);
     if (curFontPath.isEmpty())
     {
+<<<<<<< HEAD
       Portable::getenv("DOTFONTPATH");
       QCString newFontPath = ".";
       if (!curFontPath.isEmpty())
@@ -10994,6 +11008,20 @@ void parseInput()
     else
     {
       Portable::setenv("DOTFONTPATH",curFontPath);
+=======
+      Portables::getenv("DOTFONTPATH");
+      QCString newFontPath = ".";
+      if (!curFontPath.isEmpty())
+      {
+        newFontPath+=Portables::pathListSeparator();
+        newFontPath+=curFontPath;
+      }
+      Portables::setenv("DOTFONTPATH",newFontPath);
+    }
+    else
+    {
+      Portables::setenv("DOTFONTPATH",curFontPath);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     }
   }
 
@@ -11610,7 +11638,11 @@ void generateOutput()
       {
         searchDataFile="searchdata.xml";
       }
+<<<<<<< HEAD
       if (!Portable::isAbsolutePath(searchDataFile))
+=======
+      if (!Portables::isAbsolutePath(searchDataFile))
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       {
         searchDataFile.prepend(Config_getString(OUTPUT_DIRECTORY)+"/");
       }
@@ -11672,6 +11704,7 @@ void generateOutput()
     g_s.begin("Running html help compiler...\n");
     QString oldDir = QDir::currentDirPath();
     QDir::setCurrent(Config_getString(HTML_OUTPUT));
+<<<<<<< HEAD
     Portable::setShortDir();
     Portable::sysTimerStart();
     if (Portable::system(Config_getString(HHC_LOCATION), "index.hhp", Debug::isFlagSet(Debug::ExtCmd))!=1)
@@ -11679,6 +11712,14 @@ void generateOutput()
       err("failed to run html help compiler on index.hhp\n");
     }
     Portable::sysTimerStop();
+=======
+    Portables::sysTimerStart();
+    if (Portables::system(Config_getString(HHC_LOCATION), "index.hhp", Debug::isFlagSet(Debug::ExtCmd))!=1)
+    {
+      err("failed to run html help compiler on index.hhp\n");
+    }
+    Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     QDir::setCurrent(oldDir);
     g_s.end();
   }
@@ -11693,12 +11734,21 @@ void generateOutput()
     QCString const args = QCString().sprintf("%s -o \"%s\"", qhpFileName.data(), qchFileName.data());
     QString const oldDir = QDir::currentDirPath();
     QDir::setCurrent(Config_getString(HTML_OUTPUT));
+<<<<<<< HEAD
     Portable::sysTimerStart();
     if (Portable::system(Config_getString(QHG_LOCATION), args.data(), FALSE))
     {
       err("failed to run qhelpgenerator on index.qhp\n");
     }
     Portable::sysTimerStop();
+=======
+    Portables::sysTimerStart();
+    if (Portables::system(Config_getString(QHG_LOCATION), args.data(), FALSE))
+    {
+      err("failed to run qhelpgenerator on index.qhp\n");
+    }
+    Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     QDir::setCurrent(oldDir);
     g_s.end();
   }
@@ -11719,7 +11769,11 @@ void generateOutput()
   {
     msg("Total elapsed time: %.3f seconds\n(of which %.3f seconds waiting for external tools to finish)\n",
          ((double)Doxygen::runningTime.elapsed())/1000.0,
+<<<<<<< HEAD
          Portable::getSysElapsedTime()
+=======
+         Portables::getSysElapsedTime()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
         );
     g_s.print();
   }

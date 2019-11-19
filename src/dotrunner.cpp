@@ -39,7 +39,11 @@
 // support the PNG format, we need to check the result.
 static void checkPngResult(const char *imgName)
 {
+<<<<<<< HEAD
   FILE *f = Portable::fopen(imgName,"rb");
+=======
+  FILE *f = Portables::fopen(imgName,"rb");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   if (f)
   {
     char data[4];
@@ -120,7 +124,11 @@ bool DotRunner::readBoundingBox(const char *fileName,int *width,int *height,bool
 {
   const char *bb = isEps ? "%%PageBoundingBox:" : "/MediaBox [";
   int bblen = strlen(bb);
+<<<<<<< HEAD
   FILE *f = Portable::fopen(fileName,"rb");
+=======
+  FILE *f = Portables::fopen(fileName,"rb");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   if (!f) 
   {
     //printf("readBoundingBox: could not open %s\n",fileName);
@@ -191,7 +199,7 @@ bool DotRunner::run()
   if (!m_md5Hash.isEmpty()) 
   {
     QCString md5Name = getBaseNameOfOutput(m_file.data()) + ".md5";
-    FILE *f = portable_fopen(md5Name,"w");
+    FILE *f = Portables::fopen(md5Name,"w");
     if (f)
     {
       fwrite(m_md5Hash.data(),1,32,f); 
@@ -208,8 +216,12 @@ bool DotRunner::run()
       dotArgs+=' ';
       dotArgs+=s->args.data();
     }
+<<<<<<< HEAD
 
     if ((exitCode=Portable::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+=======
+    if ((exitCode=Portables::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
     if(!Doxygen::dotCacheDir.isEmpty())
     {
@@ -232,8 +244,12 @@ bool DotRunner::run()
     for (li.toFirst();(s=li.current());++li)
     {
       dotArgs=QCString("\"")+m_file.data()+"\" "+s->args.data();
+<<<<<<< HEAD
 
       if ((exitCode=Portable::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+=======
+      if ((exitCode=Portables::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
       if(!Doxygen::dotCacheDir.isEmpty())
       {
@@ -261,7 +277,11 @@ bool DotRunner::run()
       {
         if (!resetPDFSize(width,height,getBaseNameOfOutput(s->output.data()))) goto error;
         dotArgs=QCString("\"")+m_file.data()+"\" "+s->args.data();
+<<<<<<< HEAD
         if ((exitCode=Portable::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+=======
+        if ((exitCode=Portables::system(m_dotExe.data(),dotArgs,FALSE))!=0) goto error;
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       }
     }
 
@@ -275,7 +295,11 @@ bool DotRunner::run()
   if (m_cleanUp) 
   {
     //printf("removing dot file %s\n",m_file.data());
+<<<<<<< HEAD
     Portable::unlink(m_file.data());
+=======
+    Portables::unlink(m_file.data());
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
 
   // create checksum file

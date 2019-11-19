@@ -90,7 +90,11 @@ void initWarningFormat()
 
   if (!Config_getString(WARN_LOGFILE).isEmpty())
   {
+<<<<<<< HEAD
     warnFile = Portable::fopen(Config_getString(WARN_LOGFILE),"w");
+=======
+    warnFile = Portables::fopen(Config_getString(WARN_LOGFILE),"w");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
   if (!warnFile) // point it to something valid, because warn() relies on it
   {

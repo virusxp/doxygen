@@ -2428,7 +2428,11 @@ static QCString getFilterFromList(const char *name,const QStrList &filterList,bo
     if (i_equals!=-1)
     {
       QCString filterPattern = fs.left(i_equals);
+<<<<<<< HEAD
       QRegExp fpat(filterPattern,Portable::fileSystemIsCaseSensitive(),TRUE); 
+=======
+      QRegExp fpat(filterPattern,Portables::fileSystemIsCaseSensitive(),TRUE); 
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       if (fpat.match(name)!=-1) 
       {
         // found a match!
@@ -2589,7 +2593,11 @@ QCString fileToString(const char *name,bool filter,bool isSourceCode)
 static QDateTime getCurrentDateTime()
 {
   QDateTime current = QDateTime::currentDateTime();
+<<<<<<< HEAD
   QCString sourceDateEpoch = Portable::getenv("SOURCE_DATE_EPOCH");
+=======
+  QCString sourceDateEpoch = Portables::getenv("SOURCE_DATE_EPOCH");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   if (!sourceDateEpoch.isEmpty())
   {
     bool ok;
@@ -8026,7 +8034,11 @@ bool readInputFile(const char *fileName,BufStr &inBuf,bool filter,bool isSourceC
   {
     QCString cmd=filterName+" \""+fileName+"\"";
     Debug::print(Debug::ExtCmd,0,"Executing popen(`%s`)\n",qPrint(cmd));
+<<<<<<< HEAD
     FILE *f=Portable::popen(cmd,"r");
+=======
+    FILE *f=Portables::popen(cmd,"r");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     if (!f)
     {
       err("could not execute filter %s\n",filterName.data());
@@ -8040,7 +8052,11 @@ bool readInputFile(const char *fileName,BufStr &inBuf,bool filter,bool isSourceC
       //printf(">>>>>>>>Reading %d bytes\n",numRead);
       inBuf.addArray(buf,numRead),size+=numRead;
     }
+<<<<<<< HEAD
     Portable::pclose(f);
+=======
+    Portables::pclose(f);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     inBuf.at(inBuf.curPos()) ='\0';
     Debug::print(Debug::FilterOutput, 0, "Filter output\n");
     Debug::print(Debug::FilterOutput,0,"-------------\n%s\n-------------\n",qPrint(inBuf));

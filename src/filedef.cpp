@@ -2015,7 +2015,11 @@ void FileDefImpl::acquireFileVersion()
     msg("Version of %s : ",m_filePath.data());
     QCString cmd = vercmd+" \""+m_filePath+"\"";
     Debug::print(Debug::ExtCmd,0,"Executing popen(`%s`)\n",qPrint(cmd));
+<<<<<<< HEAD
     FILE *f=Portable::popen(cmd,"r");
+=======
+    FILE *f=Portables::popen(cmd,"r");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     if (!f)
     {
       err("could not execute %s\n",vercmd.data());
@@ -2024,7 +2028,11 @@ void FileDefImpl::acquireFileVersion()
     const int bufSize=1024;
     char buf[bufSize];
     int numRead = (int)fread(buf,1,bufSize-1,f);
+<<<<<<< HEAD
     Portable::pclose(f);
+=======
+    Portables::pclose(f);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     if (numRead>0 && numRead<bufSize)
     {
       buf[numRead]='\0';

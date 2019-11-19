@@ -682,7 +682,11 @@ REFWORD_NOCV   {FILEMASK}|{LABELID}|{REFWORD2_NOCV}|{REFWORD3}|{REFWORD4_NOCV}
 <St_Para,St_HtmlOnly,St_ManOnly,St_LatexOnly,St_RtfOnly,St_XmlOnly,St_DbOnly>"$("{ID}"("{ID}"))"   { /* environment variable */
                          QCString name = &yytext[2];
 			 name = name.left(name.length()-1);
+<<<<<<< HEAD
 			 QCString value = Portable::getenv(name);
+=======
+			 QCString value = Portables::getenv(name);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 			 for (int i=value.length()-1;i>=0;i--) unput(value.at(i));
                        }
 <St_Para>{HTMLTAG}     { /* html tag */ 

@@ -29,7 +29,11 @@ void writeDiaGraphFromFile(const char *inFile,const char *outDir,
                            const char *outFile,DiaOutputFormat format)
 {
   QCString absOutFile = outDir;
+<<<<<<< HEAD
   absOutFile+=Portable::pathSeparator();
+=======
+  absOutFile+=Portables::pathSeparator();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   absOutFile+=outFile;
 
   // chdir to the output dir, so dot can find the font file.
@@ -37,7 +41,11 @@ void writeDiaGraphFromFile(const char *inFile,const char *outDir,
   // go to the html output directory (i.e. path)
   QDir::setCurrent(outDir);
   //printf("Going to dir %s\n",QDir::currentDirPath().data());
+<<<<<<< HEAD
   QCString diaExe = Config_getString(DIA_PATH)+"dia"+Portable::commandExtension();
+=======
+  QCString diaExe = Config_getString(DIA_PATH)+"dia"+Portables::commandExtension();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   QCString diaArgs;
   QCString extension;
   diaArgs+="-n ";
@@ -62,6 +70,7 @@ void writeDiaGraphFromFile(const char *inFile,const char *outDir,
 
   int exitCode;
   //printf("*** running: %s %s outDir:%s %s\n",diaExe.data(),diaArgs.data(),outDir,outFile);
+<<<<<<< HEAD
   Portable::sysTimerStart();
   if ((exitCode=Portable::system(diaExe,diaArgs,FALSE))!=0)
   {
@@ -71,17 +80,37 @@ void writeDiaGraphFromFile(const char *inFile,const char *outDir,
     goto error;
   }
   Portable::sysTimerStop();
+=======
+  Portables::sysTimerStart();
+  if ((exitCode=Portables::system(diaExe,diaArgs,FALSE))!=0)
+  {
+    err("Problems running %s. Check your installation or look typos in you dia file %s\n",
+        diaExe.data(),inFile);
+    Portables::sysTimerStop();
+    goto error;
+  }
+  Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   if ( (format==DIA_EPS) && (Config_getBool(USE_PDFLATEX)) )
   {
     QCString epstopdfArgs(maxCmdLine);
     epstopdfArgs.sprintf("\"%s.eps\" --outfile=\"%s.pdf\"",
                          outFile,outFile);
+<<<<<<< HEAD
     Portable::sysTimerStart();
     if (Portable::system("epstopdf",epstopdfArgs)!=0)
     {
       err("Problems running epstopdf. Check your TeX installation!\n");
     }
     Portable::sysTimerStop();
+=======
+    Portables::sysTimerStart();
+    if (Portables::system("epstopdf",epstopdfArgs)!=0)
+    {
+      err("Problems running epstopdf. Check your TeX installation!\n");
+    }
+    Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
 
 error:

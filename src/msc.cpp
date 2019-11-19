@@ -95,7 +95,11 @@ void writeMscGraphFromFile(const char *inFile,const char *outDir,
                            const char *outFile,MscOutputFormat format)
 {
   QCString absOutFile = outDir;
+<<<<<<< HEAD
   absOutFile+=Portable::pathSeparator();
+=======
+  absOutFile+=Portables::pathSeparator();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   absOutFile+=outFile;
 
   mscgen_format_t msc_format;
@@ -130,12 +134,21 @@ void writeMscGraphFromFile(const char *inFile,const char *outDir,
     QCString epstopdfArgs(maxCmdLine);
     epstopdfArgs.sprintf("\"%s.eps\" --outfile=\"%s.pdf\"",
                          absOutFile.data(),absOutFile.data());
+<<<<<<< HEAD
     Portable::sysTimerStart();
     if (Portable::system("epstopdf",epstopdfArgs)!=0)
     {
       err("Problems running epstopdf. Check your TeX installation!\n");
     }
     Portable::sysTimerStop();
+=======
+    Portables::sysTimerStart();
+    if (Portables::system("epstopdf",epstopdfArgs)!=0)
+    {
+      err("Problems running epstopdf. Check your TeX installation!\n");
+    }
+    Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
 
   Doxygen::indexList->addImageFile(imgName);

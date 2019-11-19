@@ -210,7 +210,11 @@ static void runPlantumlContent(const QDict< QList <QCString> > &plantumlFiles,
   }
   while (s)
   {
+<<<<<<< HEAD
     pumlArgs += Portable::pathListSeparator();
+=======
+    pumlArgs += Portables::pathListSeparator();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     pumlArgs += s;
     s = pumlIncludePathList.next(); 
   }
@@ -227,7 +231,11 @@ static void runPlantumlContent(const QDict< QList <QCString> > &plantumlFiles,
     pumlArgs += "-graphvizdot \"";
     pumlArgs += dotPath;
     pumlArgs += "dot";
+<<<<<<< HEAD
     pumlArgs += Portable::commandExtension();
+=======
+    pumlArgs += Portables::commandExtension();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     pumlArgs += "\" ";
   }
   switch (format)
@@ -283,8 +291,13 @@ static void runPlantumlContent(const QDict< QList <QCString> > &plantumlFiles,
       file.close();
       Debug::print(Debug::Plantuml,0,"*** %s Running Plantuml arguments:%s\n","PlantumlManager::runPlantumlContent",qPrint(pumlArguments));
 
+<<<<<<< HEAD
       Portable::sysTimerStart();
       if ((exitCode=Portable::system(pumlExe,pumlArguments,TRUE))!=0)
+=======
+      Portables::sysTimerStart();
+      if ((exitCode=Portables::system(pumlExe,pumlArguments,TRUE))!=0)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       {
         err("Problems running PlantUML. Verify that the command 'java -jar \"%splantuml.jar\" -h' works from the command line. Exit code: %d\n",
             plantumlJarPath.data(),exitCode);
@@ -294,7 +307,11 @@ static void runPlantumlContent(const QDict< QList <QCString> > &plantumlFiles,
         Debug::print(Debug::Plantuml,0,"*** %s Remove %s file\n","PlantumlManager::runPlantumlContent",qPrint(puFileName));
         file.remove();
       }
+<<<<<<< HEAD
       Portable::sysTimerStop();
+=======
+      Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
       if ( (format==PlantumlManager::PUML_EPS) && (Config_getBool(USE_PDFLATEX)) )
       {
@@ -309,12 +326,21 @@ static void runPlantumlContent(const QDict< QList <QCString> > &plantumlFiles,
             const int maxCmdLine = 40960;
             QCString epstopdfArgs(maxCmdLine);
             epstopdfArgs.sprintf("\"%s%s.eps\" --outfile=\"%s%s.pdf\"",qPrint(pumlOutDir),qPrint(*nb),qPrint(pumlOutDir),qPrint(*nb));
+<<<<<<< HEAD
             Portable::sysTimerStart();
             if ((exitCode=Portable::system("epstopdf",epstopdfArgs))!=0)
             {
               err("Problems running epstopdf. Check your TeX installation! Exit code: %d\n",exitCode);
             }
             Portable::sysTimerStop();
+=======
+            Portables::sysTimerStart();
+            if ((exitCode=Portables::system("epstopdf",epstopdfArgs))!=0)
+            {
+              err("Problems running epstopdf. Check your TeX installation! Exit code: %d\n",exitCode);
+            }
+            Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
           }
         }
       }

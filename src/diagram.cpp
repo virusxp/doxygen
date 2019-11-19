@@ -1337,6 +1337,7 @@ void ClassDiagram::writeFigure(FTextStream &output,const char *path,
     epstopdfArgs.sprintf("\"%s.eps\" --outfile=\"%s.pdf\"",
                    epsBaseName.data(),epsBaseName.data());
     //printf("Converting eps using '%s'\n",epstopdfArgs.data());
+<<<<<<< HEAD
     Portable::sysTimerStart();
     if (Portable::system("epstopdf",epstopdfArgs)!=0)
     {
@@ -1345,6 +1346,16 @@ void ClassDiagram::writeFigure(FTextStream &output,const char *path,
        return;
     }
     Portable::sysTimerStop();
+=======
+    Portables::sysTimerStart();
+    if (Portables::system("epstopdf",epstopdfArgs)!=0)
+    {
+       err("Problems running epstopdf. Check your TeX installation!\n");
+       Portables::sysTimerStop();
+       return;
+    }
+    Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
 }
 

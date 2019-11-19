@@ -744,12 +744,20 @@ class FilterCache
         // file already processed, get the results after filtering from the tmp file
         Debug::print(Debug::FilterOutput,0,"Reusing filter result for %s from %s at offset=%d size=%d\n",
                qPrint(fileName),qPrint(Doxygen::filterDBFileName),(int)item->filePos,(int)item->fileSize);
+<<<<<<< HEAD
         f = Portable::fopen(Doxygen::filterDBFileName,"rb");
+=======
+        f = Portables::fopen(Doxygen::filterDBFileName,"rb");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
         if (f)
         {
           bool success=TRUE;
           str.resize(item->fileSize+1);
+<<<<<<< HEAD
           if (Portable::fseek(f,item->filePos,SEEK_SET)==-1)
+=======
+          if (Portables::fseek(f,item->filePos,SEEK_SET)==-1)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
           {
             err("Failed to seek to position %d in filter database file %s\n",(int)item->filePos,qPrint(Doxygen::filterDBFileName));
             success=FALSE;
@@ -780,8 +788,13 @@ class FilterCache
         // filter file
         QCString cmd=filter+" \""+fileName+"\"";
         Debug::print(Debug::ExtCmd,0,"Executing popen(`%s`)\n",qPrint(cmd));
+<<<<<<< HEAD
         f = Portable::popen(cmd,"r");
         FILE *bf = Portable::fopen(Doxygen::filterDBFileName,"a+b");
+=======
+        f = Portables::popen(cmd,"r");
+        FILE *bf = Portables::fopen(Doxygen::filterDBFileName,"a+b");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
         FilterCacheItem *item = new FilterCacheItem;
         item->filePos = m_endPos;
         if (bf==0)
@@ -790,7 +803,11 @@ class FilterCache
           err("Error opening filter database file %s\n",qPrint(Doxygen::filterDBFileName));
           str.addChar('\0');
           delete item;
+<<<<<<< HEAD
           Portable::pclose(f);
+=======
+          Portables::pclose(f);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
           return FALSE;
         }
         // append the filtered output to the database file
@@ -806,7 +823,11 @@ class FilterCache
                 qPrint(Doxygen::filterDBFileName),bytesWritten,bytesRead);
             str.addChar('\0');
             delete item;
+<<<<<<< HEAD
             Portable::pclose(f);
+=======
+            Portables::pclose(f);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
             fclose(bf);
             return FALSE;
           }
@@ -821,14 +842,22 @@ class FilterCache
                qPrint(fileName),qPrint(Doxygen::filterDBFileName),(int)item->filePos,(int)item->fileSize);
         // update end of file position
         m_endPos += size;
+<<<<<<< HEAD
         Portable::pclose(f);
+=======
+        Portables::pclose(f);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
         fclose(bf);
       }
       else // no filtering
       {
         // normal file
         //printf("getFileContents(%s): no filter\n",qPrint(fileName));
+<<<<<<< HEAD
         f = Portable::fopen(fileName,"r");
+=======
+        f = Portables::fopen(fileName,"r");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
         while (!feof(f))
         {
           int bytesRead = fread(buf,1,blockSize,f);

@@ -117,15 +117,24 @@ void FormulaList::generateBitmaps(const char *path)
     //printf("Running latex...\n");
     //system("latex _formulas.tex </dev/null >/dev/null");
     QCString latexCmd = "latex";
+<<<<<<< HEAD
     Portable::sysTimerStart();
     if (Portable::system(latexCmd,"_formulas.tex")!=0)
+=======
+    Portables::sysTimerStart();
+    if (Portables::system(latexCmd,"_formulas.tex")!=0)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     {
       err("Problems running latex. Check your installation or look "
           "for typos in _formulas.tex and check _formulas.log!\n");
       formulaError=TRUE;
       //return;
     }
+<<<<<<< HEAD
     Portable::sysTimerStop();
+=======
+    Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     //printf("Running dvips...\n");
     QListIterator<int> pli(pagesToGenerate);
     int *pagePtr;
@@ -142,6 +151,7 @@ void FormulaList::generateBitmaps(const char *path)
       // postscript file.
       sprintf(dviArgs,"-q -D 600 -n 1 -p %d -o %s_tmp.ps _formulas.dvi",
           pageIndex,formBase.data());
+<<<<<<< HEAD
       Portable::sysTimerStart();
       if (Portable::system("dvips",dviArgs)!=0)
       {
@@ -163,6 +173,29 @@ void FormulaList::generateBitmaps(const char *path)
         return;
       }
       Portable::sysTimerStop();
+=======
+      Portables::sysTimerStart();
+      if (Portables::system("dvips",dviArgs)!=0)
+      {
+        err("Problems running dvips. Check your installation!\n");
+        Portables::sysTimerStop();
+        QDir::setCurrent(oldDir);
+        return;
+      }
+      Portables::sysTimerStop();
+      // run ps2epsi to convert to an encapsulated postscript file with
+      // boundingbox (dvips with -E has some problems here).
+      sprintf(psArgs,"%s_tmp.ps %s.eps",formBase.data(),formBase.data()); 
+      Portables::sysTimerStart();
+      if (Portables::system("ps2epsi",psArgs)!=0)
+      {
+        err("Problems running ps2epsi. Check your installation!\n");
+        Portables::sysTimerStop();
+        QDir::setCurrent(oldDir);
+        return;
+      }
+      Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       // now we read the generated postscript file to extract the bounding box
       QFileInfo fi(formBase+".eps");
       if (fi.exists())
@@ -215,6 +248,7 @@ void FormulaList::generateBitmaps(const char *path)
                     gx,gy,(int)(scaleFactor*72),(int)(scaleFactor*72),
                     formBase.data(),formBase.data()
              );
+<<<<<<< HEAD
       Portable::sysTimerStart();
       if (Portable::system(Portable::ghostScriptCommand(),gsArgs)!=0)
       {
@@ -224,6 +258,17 @@ void FormulaList::generateBitmaps(const char *path)
         return;
       }
       Portable::sysTimerStop();
+=======
+      Portables::sysTimerStart();
+      if (Portables::system(Portables::ghostScriptCommand(),gsArgs)!=0)
+      {
+        err("Problem running ghostscript %s %s. Check your installation!\n",Portables::ghostScriptCommand(),gsArgs);
+        Portables::sysTimerStop();
+        QDir::setCurrent(oldDir);
+        return;
+      }
+      Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       f.setName(formBase+".pnm");
       uint imageX=0,imageY=0;
       // we read the generated image again, to obtain the pixel data.

@@ -145,6 +145,18 @@ void copyToCache(QCString const& absFileName, QCString const& cacheName)
   if (g.exists()) copyFile(absFileName, Doxygen::dotCacheDir + cacheName);
 }
 
+void copyToCache(const char* absFileName, const char* cacheName)
+{
+  if (Doxygen::dotCacheDir.isEmpty())
+    return;
+
+  QFile f(cacheName);
+  if (f.exists()) f.remove();
+
+  QFile g(absFileName);
+  if (g.exists()) copyFile(QCString(absFileName), Doxygen::dotCacheDir + QCString(cacheName));
+}
+
 //--------------------------------------------------------------------
 
 QCString DotGraph::imgName() const

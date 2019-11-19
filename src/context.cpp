@@ -1978,7 +1978,11 @@ class ClassContext::Private : public DefinitionContext<ClassContext::Private>
             {
               cg->writeGraph(t,GOF_BITMAP,EOF_Html,
                              g_globals.outputDir,
+<<<<<<< HEAD
                              g_globals.outputDir+Portable::pathSeparator()+m_classDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                             g_globals.outputDir+Portables::pathSeparator()+m_classDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                              relPathAsString(),TRUE,TRUE,g_globals.dynSectionId
                             );
             }
@@ -1987,7 +1991,11 @@ class ClassContext::Private : public DefinitionContext<ClassContext::Private>
             {
               cg->writeGraph(t,GOF_EPS,EOF_LaTeX,
                              g_globals.outputDir,
+<<<<<<< HEAD
                              g_globals.outputDir+Portable::pathSeparator()+m_classDef->getOutputFileBase()+".tex",
+=======
+                             g_globals.outputDir+Portables::pathSeparator()+m_classDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                              relPathAsString(),TRUE,TRUE,g_globals.dynSectionId
                             );
             }
@@ -2077,7 +2085,11 @@ class ClassContext::Private : public DefinitionContext<ClassContext::Private>
             {
               cg->writeGraph(t,GOF_BITMAP,EOF_Html,
                              g_globals.outputDir,
+<<<<<<< HEAD
                              g_globals.outputDir+Portable::pathSeparator()+m_classDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                             g_globals.outputDir+Portables::pathSeparator()+m_classDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                              relPathAsString(),TRUE,TRUE,g_globals.dynSectionId
                             );
             }
@@ -2086,7 +2098,11 @@ class ClassContext::Private : public DefinitionContext<ClassContext::Private>
             {
               cg->writeGraph(t,GOF_EPS,EOF_LaTeX,
                              g_globals.outputDir,
+<<<<<<< HEAD
                              g_globals.outputDir+Portable::pathSeparator()+m_classDef->getOutputFileBase()+".tex",
+=======
+                             g_globals.outputDir+Portables::pathSeparator()+m_classDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                              relPathAsString(),TRUE,TRUE,g_globals.dynSectionId
                             );
             }
@@ -3123,7 +3139,11 @@ class FileContext::Private : public DefinitionContext<FileContext::Private>
             {
               cg->writeGraph(t,GOF_BITMAP,EOF_Html,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_fileDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_fileDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -3132,7 +3152,11 @@ class FileContext::Private : public DefinitionContext<FileContext::Private>
             {
               cg->writeGraph(t,GOF_EPS,EOF_LaTeX,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_fileDef->getOutputFileBase()+".tex",
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_fileDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -3175,7 +3199,11 @@ class FileContext::Private : public DefinitionContext<FileContext::Private>
             {
               cg->writeGraph(t,GOF_BITMAP,EOF_Html,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_fileDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_fileDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -3184,7 +3212,11 @@ class FileContext::Private : public DefinitionContext<FileContext::Private>
             {
               cg->writeGraph(t,GOF_EPS,EOF_LaTeX,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_fileDef->getOutputFileBase()+".tex",
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_fileDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -3613,7 +3645,11 @@ class DirContext::Private : public DefinitionContext<DirContext::Private>
               graph->writeGraph(t,GOF_BITMAP,
                                 EOF_Html,
                                 g_globals.outputDir,
+<<<<<<< HEAD
                                 g_globals.outputDir+Portable::pathSeparator()+m_dirDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                                g_globals.outputDir+Portables::pathSeparator()+m_dirDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                                 relPathAsString(),
                                 TRUE,
                                 g_globals.dynSectionId,
@@ -3625,7 +3661,11 @@ class DirContext::Private : public DefinitionContext<DirContext::Private>
               graph->writeGraph(t,GOF_EPS,
                                 EOF_LaTeX,
                                 g_globals.outputDir,
+<<<<<<< HEAD
                                 g_globals.outputDir+Portable::pathSeparator()+m_dirDef->getOutputFileBase()+".tex",
+=======
+                                g_globals.outputDir+Portables::pathSeparator()+m_dirDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                                 relPathAsString(),
                                 TRUE,
                                 g_globals.dynSectionId,
@@ -5026,7 +5066,11 @@ class MemberContext::Private : public DefinitionContext<MemberContext::Private>
             {
               cg->writeGraph(t,GOF_BITMAP,EOF_Html,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_memberDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_memberDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -5035,7 +5079,11 @@ class MemberContext::Private : public DefinitionContext<MemberContext::Private>
             {
               cg->writeGraph(t,GOF_EPS,EOF_LaTeX,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_memberDef->getOutputFileBase()+".tex",
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_memberDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -5098,7 +5146,11 @@ class MemberContext::Private : public DefinitionContext<MemberContext::Private>
             {
               cg->writeGraph(t,GOF_BITMAP,EOF_Html,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_memberDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_memberDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -5107,7 +5159,11 @@ class MemberContext::Private : public DefinitionContext<MemberContext::Private>
             {
               cg->writeGraph(t,GOF_EPS,EOF_LaTeX,
                   g_globals.outputDir,
+<<<<<<< HEAD
                   g_globals.outputDir+Portable::pathSeparator()+m_memberDef->getOutputFileBase()+".tex",
+=======
+                  g_globals.outputDir+Portables::pathSeparator()+m_memberDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                   relPathAsString(),TRUE,g_globals.dynSectionId
                   );
             }
@@ -5368,7 +5424,11 @@ class ModuleContext::Private : public DefinitionContext<ModuleContext::Private>
               graph->writeGraph(t,GOF_BITMAP,
                                 EOF_Html,
                                 g_globals.outputDir,
+<<<<<<< HEAD
                                 g_globals.outputDir+Portable::pathSeparator()+m_groupDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+=======
+                                g_globals.outputDir+Portables::pathSeparator()+m_groupDef->getOutputFileBase()+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                                 relPathAsString(),
                                 TRUE,
                                 g_globals.dynSectionId);
@@ -5379,7 +5439,11 @@ class ModuleContext::Private : public DefinitionContext<ModuleContext::Private>
               graph->writeGraph(t,GOF_EPS,
                                 EOF_LaTeX,
                                 g_globals.outputDir,
+<<<<<<< HEAD
                                 g_globals.outputDir+Portable::pathSeparator()+m_groupDef->getOutputFileBase()+".tex",
+=======
+                                g_globals.outputDir+Portables::pathSeparator()+m_groupDef->getOutputFileBase()+".tex",
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                                 relPathAsString(),
                                 TRUE,
                                 g_globals.dynSectionId);
@@ -8461,7 +8525,11 @@ class InheritanceGraphContext::Private
                           /*GOF_BITMAP,
                           EOF_Html,*/
                           g_globals.outputDir,
+<<<<<<< HEAD
                           g_globals.outputDir+Portable::pathSeparator()+"inherits"+Doxygen::htmlFileExtension,
+=======
+                          g_globals.outputDir+Portables::pathSeparator()+"inherits"+Doxygen::htmlFileExtension,
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
                           m_id);
       }
       return TemplateVariant(result.data(),TRUE);

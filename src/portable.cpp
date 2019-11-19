@@ -28,16 +28,25 @@ extern char **environ;
 #include "debug.h"
 #endif
 
+<<<<<<< HEAD
 #if !defined(_WIN32) || defined(__CYGWIN__)
 static bool environmentLoaded = false;
 static std::map<std::string,std::string> proc_env = std::map<std::string,std::string>();
 #endif
+=======
+bool Portables::environmentLoaded = false;
+std::map<std::string,std::string> Portables::proc_env = std::map<std::string,std::string>();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
 static double  g_sysElapsedTime;
 static QTime   g_time;
 
 
+<<<<<<< HEAD
 int Portable::system(const char *command,const char *args,bool commandHasConsole)
+=======
+int Portables::system(const char *command,const char *args,bool commandHasConsole)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 
   if (command==0) return 1;
@@ -196,7 +205,11 @@ int Portable::system(const char *command,const char *args,bool commandHasConsole
 
 }
 
+<<<<<<< HEAD
 unsigned int Portable::pid(void)
+=======
+uint Portables::pid()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
   unsigned int pid;
 #if !defined(_WIN32) || defined(__CYGWIN__)
@@ -213,7 +226,11 @@ unsigned int Portable::pid(void)
 #endif
 
 #if !defined(_WIN32) || defined(__CYGWIN__)
+<<<<<<< HEAD
 void loadEnvironment()
+=======
+void Portables::loadEnvironment()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
   if(environ != NULL)
   {
@@ -236,16 +253,25 @@ void loadEnvironment()
     }
   }
 
+<<<<<<< HEAD
   environmentLoaded = true;
 }
 #endif
 
 void Portable::setenv(const char *name,const char *value)
+=======
+  Portables::environmentLoaded = true;
+}
+#endif
+
+void Portables::setenv(const char *name,const char *value)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
     if (value==0) value="";
 #if defined(_WIN32) && !defined(__CYGWIN__)
     SetEnvironmentVariable(name,value);
 #else
+<<<<<<< HEAD
     if(!environmentLoaded) // if the environment variables are not loaded already...
     {                                 // ...call loadEnvironment to store them in class
       loadEnvironment();
@@ -256,6 +282,18 @@ void Portable::setenv(const char *name,const char *value)
 }
 
 void Portable::unsetenv(const char *variable)
+=======
+    if(!Portables::environmentLoaded) // if the environment variables are not loaded already...
+    {                                 // ...call loadEnvironment to store them in class
+      Portables::loadEnvironment();
+    }
+
+    Portables::proc_env[name] = std::string(value); // create or replace exisiting value
+#endif
+}
+
+void Portables::unsetenv(const char *variable)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
     SetEnvironmentVariable(variable,0);
@@ -269,18 +307,29 @@ void Portable::unsetenv(const char *variable)
       return; // not properly formatted
     }
 
+<<<<<<< HEAD
     if(proc_env.find(variable) != proc_env.end())
     {
       proc_env[variable].erase();
+=======
+    if(Portables::proc_env.find(variable) != Portables::proc_env.end())
+    {
+      Portables::proc_env[variable].erase();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     }
 #endif
 }
 
+<<<<<<< HEAD
 const char *Portable::getenv(const char *variable)
+=======
+const char *Portables::getenv(const char *variable)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {  
 #if defined(_WIN32) && !defined(__CYGWIN__)
     return ::getenv(variable);
 #else
+<<<<<<< HEAD
     if(!environmentLoaded) // if the environment variables are not loaded already...
     {                                 // ...call loadEnvironment to store them in class
       loadEnvironment();
@@ -289,6 +338,16 @@ const char *Portable::getenv(const char *variable)
     if(proc_env.find(variable) != proc_env.end())
     {
       return proc_env[variable].c_str();
+=======
+    if(!Portables::environmentLoaded) // if the environment variables are not loaded already...
+    {                                 // ...call loadEnvironment to store them in class
+      Portables::loadEnvironment();
+    }
+
+    if(Portables::proc_env.find(variable) != Portables::proc_env.end())
+    {
+      return Portables::proc_env[variable].c_str();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     }
     else
     {
@@ -297,7 +356,11 @@ const char *Portable::getenv(const char *variable)
 #endif
 }
 
+<<<<<<< HEAD
 portable_off_t Portable::fseek(FILE *f,portable_off_t offset, int whence)
+=======
+portable_off_t Portables::fseek(FILE *f,portable_off_t offset, int whence)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(__MINGW32__)
   return fseeko64(f,offset,whence);
@@ -308,7 +371,11 @@ portable_off_t Portable::fseek(FILE *f,portable_off_t offset, int whence)
 #endif
 }
 
+<<<<<<< HEAD
 portable_off_t Portable::ftell(FILE *f)
+=======
+portable_off_t Portables::ftell(FILE *f)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(__MINGW32__)
   return ftello64(f);  
@@ -319,7 +386,11 @@ portable_off_t Portable::ftell(FILE *f)
 #endif
 }
 
+<<<<<<< HEAD
 FILE *Portable::fopen(const char *fileName,const char *mode)
+=======
+FILE *Portables::fopen(const char *fileName,const char *mode)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
   QString fn(fileName);
@@ -330,7 +401,11 @@ FILE *Portable::fopen(const char *fileName,const char *mode)
 #endif
 }
 
+<<<<<<< HEAD
 char  Portable::pathSeparator(void)
+=======
+char  Portables::pathSeparator()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
   return '\\';
@@ -339,7 +414,11 @@ char  Portable::pathSeparator(void)
 #endif
 }
 
+<<<<<<< HEAD
 char  Portable::pathListSeparator(void)
+=======
+char  Portables::pathListSeparator()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
   return ';';
@@ -348,6 +427,7 @@ char  Portable::pathListSeparator(void)
 #endif
 }
 
+<<<<<<< HEAD
 #if defined(_WIN32) && !defined(__CYGWIN__)
 static const bool ExistsOnPath(const char *fileName)
 {
@@ -382,7 +462,13 @@ static const bool ExistsOnPath(const char *fileName)
 }
 #endif
 
+=======
+<<<<<<< HEAD
+>>>>>>> efac9636... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 const char *Portable::ghostScriptCommand(void)
+=======
+const char *Portables::ghostScriptCommand()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
     static char *gsexe = NULL;
@@ -406,7 +492,11 @@ const char *Portable::ghostScriptCommand(void)
 #endif
 }
 
+<<<<<<< HEAD
 const char *Portable::commandExtension(void)
+=======
+const char *Portables::commandExtension()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
     return ".exe";
@@ -415,7 +505,11 @@ const char *Portable::commandExtension(void)
 #endif
 }
 
+<<<<<<< HEAD
 bool Portable::fileSystemIsCaseSensitive(void)
+=======
+bool Portables::fileSystemIsCaseSensitive()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) || defined(macintosh) || defined(__MACOSX__) || defined(__APPLE__) || defined(__CYGWIN__)
   return FALSE;
@@ -424,6 +518,7 @@ bool Portable::fileSystemIsCaseSensitive(void)
 #endif
 }
 
+<<<<<<< HEAD
 FILE * Portable::popen(const char *name,const char *type)
 {
   #if defined(_MSC_VER) || defined(__BORLANDC__)
@@ -443,21 +538,46 @@ int Portable::pclose(FILE *stream)
 }
 
 void Portable::sysTimerStart(void)
+=======
+FILE * Portables::popen(const char *name,const char *type)
+{
+  return ::popen(name,type);
+}
+
+int Portables::pclose(FILE *stream)
+{
+  return ::pclose(stream);
+}
+
+void Portables::sysTimerStart()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
   g_time.start();
 }
 
+<<<<<<< HEAD
 void Portable::sysTimerStop(void)
+=======
+void Portables::sysTimerStop()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
   g_sysElapsedTime+=((double)g_time.elapsed())/1000.0;
 }
 
+<<<<<<< HEAD
 double Portable::getSysElapsedTime(void)
+=======
+double Portables::getSysElapsedTime()
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
   return g_sysElapsedTime;
 }
 
+<<<<<<< HEAD
 void Portable::sleep(int ms)
+=======
+void Portables::sleep(int ms)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
   Sleep(ms);
@@ -466,7 +586,11 @@ void Portable::sleep(int ms)
 #endif
 }
 
+<<<<<<< HEAD
 bool Portable::isAbsolutePath(const char *fileName)
+=======
+bool Portables::isAbsolutePath(const char *fileName)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 # ifdef _WIN32
   if (isalpha (fileName [0]) && fileName[1] == ':')
@@ -488,6 +612,7 @@ bool Portable::isAbsolutePath(const char *fileName)
  *
  * This routine was inspired by the cause for bug 766059 was that in the Windows path there were forward slashes.
  */
+<<<<<<< HEAD
 void Portable::correct_path(void)
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
@@ -499,6 +624,19 @@ void Portable::correct_path(void)
 }
 
 void Portable::unlink(const char *fileName)
+=======
+void Portables::correct_path(void)
+{
+#if defined(_WIN32) && !defined(__CYGWIN__)
+  const char *p = Portables::getenv("PATH");
+  if (!p) return; // no path nothing to correct
+  QCString result = substitute(p,'/','\\');
+  if (result!=p) Portables::setenv("PATH",result.data());
+#endif
+}
+
+void Portables::unlink(const char *fileName)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 {
 #if defined(_WIN32) && !defined(__CYGWIN__)
   _unlink(fileName);

@@ -38,12 +38,20 @@ static QCString g_dotFontPath;
 static void setDotFontPath(const char *path)
 {
   ASSERT(g_dotFontPath.isEmpty());
+<<<<<<< HEAD
   g_dotFontPath = Portable::getenv("DOTFONTPATH");
+=======
+  g_dotFontPath = Portables::getenv("DOTFONTPATH");
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   QCString newFontPath = Config_getString(DOT_FONTPATH);
   QCString spath = path;
   if (!newFontPath.isEmpty() && !spath.isEmpty())
   {
+<<<<<<< HEAD
     newFontPath.prepend(spath+Portable::pathListSeparator());
+=======
+    newFontPath.prepend(spath+Portables::pathListSeparator());
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
   else if (newFontPath.isEmpty() && !spath.isEmpty())
   {
@@ -51,21 +59,36 @@ static void setDotFontPath(const char *path)
   }
   else
   {
+<<<<<<< HEAD
     Portable::unsetenv("DOTFONTPATH");
     return;
   }
   Portable::setenv("DOTFONTPATH",newFontPath);
+=======
+    Portables::unsetenv("DOTFONTPATH");
+    return;
+  }
+  Portables::setenv("DOTFONTPATH",newFontPath);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 }
 
 static void unsetDotFontPath()
 {
   if (g_dotFontPath.isEmpty())
   {
+<<<<<<< HEAD
     Portable::unsetenv("DOTFONTPATH");
   }
   else
   {
     Portable::setenv("DOTFONTPATH",g_dotFontPath);
+=======
+    Portables::unsetenv("DOTFONTPATH");
+  }
+  else
+  {
+    Portables::setenv("DOTFONTPATH",g_dotFontPath);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   }
   g_dotFontPath="";
 }
@@ -183,7 +206,11 @@ bool DotManager::run() const
     setDotFontPath(Config_getString(DOCBOOK_OUTPUT));
     setPath=TRUE;
   }
+<<<<<<< HEAD
   Portable::sysTimerStart();
+=======
+  Portables::sysTimerStart();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   // fill work queue with dot operations
   DotRunner *dr;
   int prev=1;
@@ -220,7 +247,11 @@ bool DotManager::run() const
       {
         break;
       }
+<<<<<<< HEAD
       Portable::sleep(100);
+=======
+      Portables::sleep(100);
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     }
     // signal the workers we are done
     for (i=0;i<(int)m_workers.count();i++)
@@ -233,7 +264,11 @@ bool DotManager::run() const
       m_workers.at(i)->wait();
     }
   }
+<<<<<<< HEAD
   Portable::sysTimerStop();
+=======
+  Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   if (setPath)
   {
     unsetDotFontPath();

@@ -169,7 +169,11 @@ static void createSVG()
 
     QCString vlargs="-Tsvg \""+ov+"\" "+dir ;
 
+<<<<<<< HEAD
     if (Portable::system(Config_getString(DOT_PATH) + "dot",vlargs)!=0)
+=======
+    if (Portables::system(Config_getString(DOT_PATH) + "dot",vlargs)!=0)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     {
       err("could not create dot file");
     }
@@ -3763,7 +3767,11 @@ void FlowChart::createSVG()
 
   QCString vlargs="-Tsvg \""+ov+"\" "+dir ;
 
+<<<<<<< HEAD
   if (Portable::system(Config_getString(DOT_PATH) + "dot",vlargs)!=0)
+=======
+  if (Portables::system(Config_getString(DOT_PATH) + "dot",vlargs)!=0)
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   {
     err("could not create dot file");
   }

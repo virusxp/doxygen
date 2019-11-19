@@ -464,7 +464,67 @@ CHARLIT   (("'"\\[0-7]{1,3}"'")|("'"\\."'")|("'"[^'\\\n]{1,4}"'"))
 %x	CondLineCpp
 %x      SkipCond
 
+<<<<<<< HEAD
 %%
+=======
+static FileState *findFile(const char *fileName,bool localInclude,bool &alreadyIncluded)
+{
+  //printf("** findFile(%s,%d) g_yyFileName=%s\n",fileName,localInclude,g_yyFileName.data());
+  if (Portables::isAbsolutePath(fileName))
+  {
+    FileState *fs = checkAndOpenFile(fileName,alreadyIncluded);
+    if (fs)
+    {
+      setFileName(fileName);
+      g_yyLineNr=1;
+      return fs;
+    }
+    else if (alreadyIncluded)
+    {
+      return 0;
+    }
+  }
+  if (localInclude && !g_yyFileName.isEmpty())
+  {
+    QFileInfo fi(g_yyFileName);
+    if (fi.exists())
+    {
+      QCString absName = QCString(fi.dirPath(TRUE).data())+"/"+fileName;
+      FileState *fs = checkAndOpenFile(absName,alreadyIncluded);
+      if (fs)
+      {
+	setFileName(absName);
+	g_yyLineNr=1;
+	return fs;
+      }
+      else if (alreadyIncluded)
+      {
+	return 0;
+      }
+    }
+  }
+  if (g_pathList==0) 
+  {
+    return 0;
+  }
+  char *s=g_pathList->first();
+  while (s)
+  {
+    QCString absName = (QCString)s+"/"+fileName;
+    //printf("  Looking for %s in %s\n",fileName,s);
+    FileState *fs = checkAndOpenFile(absName,alreadyIncluded);
+    if (fs)
+    {
+      setFileName(absName);
+      g_yyLineNr=1;
+      //printf("  -> found it\n");
+      return fs;
+    }
+    else if (alreadyIncluded)
+    {
+      return 0;
+    }
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
 
 <*>\x06					
 <*>\x00

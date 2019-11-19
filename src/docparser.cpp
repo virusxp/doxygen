@@ -378,12 +378,21 @@ static QCString findAndCopyImage(const char *fileName,DocImage::Type type, bool 
       epstopdfArgs.sprintf("\"%s/%s.eps\" --outfile=\"%s/%s.pdf\"",
                            outputDir.data(), baseName.data(),
 			   outputDir.data(), baseName.data());
+<<<<<<< HEAD
       Portable::sysTimerStart();
       if (Portable::system("epstopdf",epstopdfArgs)!=0)
       {
 	err("Problems running epstopdf. Check your TeX installation!\n");
       }
       Portable::sysTimerStop();
+=======
+      Portables::sysTimerStart();
+      if (Portables::system("epstopdf",epstopdfArgs)!=0)
+      {
+	err("Problems running epstopdf. Check your TeX installation!\n");
+      }
+      Portables::sysTimerStop();
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
       return baseName;
     }
   }
@@ -1833,7 +1842,11 @@ static int internalValidatingParseDoc(DocNode *parent,QList<DocNode> &children,
 
 static void readTextFileByName(const QCString &file,QCString &text)
 {
+<<<<<<< HEAD
   if (Portable::isAbsolutePath(file.data()))
+=======
+  if (Portables::isAbsolutePath(file.data()))
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
   {
     QFileInfo fi(file);
     if (fi.exists())
@@ -1846,7 +1859,11 @@ static void readTextFileByName(const QCString &file,QCString &text)
   char *s=examplePathList.first();
   while (s)
   {
+<<<<<<< HEAD
     QCString absFileName = QCString(s)+Portable::pathSeparator()+file;
+=======
+    QCString absFileName = QCString(s)+Portables::pathSeparator()+file;
+>>>>>>> 9344615d... Refactoring of portable.h and portable.cpp functions to be contained in a static class
     QFileInfo fi(absFileName);
     if (fi.exists())
     {
