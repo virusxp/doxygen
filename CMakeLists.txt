@@ -186,5 +186,9 @@ add_subdirectory(addon)
 enable_testing()
 add_subdirectory(testing)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
+
 include(cmake/packaging.cmake) # set CPACK_xxxx properties
 include(CPack)
+
