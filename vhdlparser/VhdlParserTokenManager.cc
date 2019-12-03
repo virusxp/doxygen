@@ -3584,7 +3584,7 @@ void  VhdlParserTokenManager::TokenLexicalActions(Token *matchedToken){
        }
       case 137 : {
         image.append(jjstrLiteralImages[137]);
-        lengthOfMatch = jjstrLiteralImages[137].length();
+        lengthOfMatch = (int)jjstrLiteralImages[137].length();
                   ::vhdl::parser::VhdlParser::setLineParsed(SEMI_T);
          break;
        }

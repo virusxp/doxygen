@@ -756,7 +756,7 @@ class FilterCache
           }
           if (success)
           {
-            int numBytes = fread(str.data(),1,item->fileSize,f);
+            int numBytes = (int)fread(str.data(),1,item->fileSize,f);
             if (numBytes!=item->fileSize)
             {
               err("Failed to read %d bytes from position %d in filter database file %s: got %d bytes\n",
@@ -797,8 +797,8 @@ class FilterCache
         int size=0;
         while (!feof(f))
         {
-          int bytesRead = fread(buf,1,blockSize,f);
-          int bytesWritten = fwrite(buf,1,bytesRead,bf);
+          int bytesRead = (int)fread(buf,1,blockSize,f);
+          int bytesWritten = (int)fwrite(buf,1,bytesRead,bf);
           if (bytesRead!=bytesWritten)
           {
             // handle error
@@ -831,7 +831,7 @@ class FilterCache
         f = portable_fopen(fileName,"r");
         while (!feof(f))
         {
-          int bytesRead = fread(buf,1,blockSize,f);
+          int bytesRead = (int)fread(buf,1,blockSize,f);
           str.addArray(buf,bytesRead);
         }
         str.addChar('\0');

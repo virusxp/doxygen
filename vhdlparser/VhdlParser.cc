@@ -56,6 +56,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -201,6 +202,7 @@ return "&";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -345,6 +347,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -730,6 +733,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -2250,6 +2254,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -2421,6 +2426,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -2450,6 +2456,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -2614,6 +2621,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -2778,6 +2786,7 @@ return "file";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -3307,6 +3316,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -3337,6 +3347,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -3541,6 +3552,7 @@ return "or" ;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -4024,6 +4036,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -4157,6 +4170,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -4418,7 +4432,7 @@ assert(false);
 }
 
 
-QCString VhdlParser::instantiation_unit() {QCString s,s1,s2;Token *tok;
+QCString VhdlParser::instantiation_unit() {QCString s,s1,s2;
     switch ((jj_ntk==-1)?jj_ntk_f():jj_ntk) {
     case COMPONENT_T:
     case BASIC_IDENTIFIER:
@@ -4511,6 +4525,7 @@ s1="configuration ";return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -4550,6 +4565,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -4996,6 +5012,7 @@ return "null";
       }
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -5120,6 +5137,7 @@ return "not";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -5176,6 +5194,7 @@ return "linkage";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -5223,6 +5242,7 @@ return tok->image.c_str();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -5593,6 +5613,7 @@ return s;
       }
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -5661,6 +5682,7 @@ return "type";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -7057,6 +7079,7 @@ return "/=";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -7601,6 +7624,7 @@ return "ror";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -7630,6 +7654,7 @@ return "-";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -7798,6 +7823,7 @@ return "bus";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -7859,6 +7885,7 @@ return "all";
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -8622,6 +8649,7 @@ return " all ";
       }
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -9602,6 +9630,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -10014,6 +10043,7 @@ return t->image.data();
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -10052,6 +10082,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -10090,6 +10121,7 @@ return "."+s;
       }
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 
@@ -10775,6 +10807,7 @@ return s;
       errorHandler->handleParseError(token, getToken(1), __FUNCTION__, this), hasError = true;
     }
 assert(false);
+    return QCString();  // we should not end here, just satisfy the compiler
 }
 
 

@@ -76,10 +76,13 @@ namespace parser {
    */
   Token *Token::newToken(int ofKind, const JJString& image)
   {
+    /* Comment back in when cases are needed
     switch(ofKind)
     {
       default : return new Token(ofKind, image);
     }
+    */
+    return new Token(ofKind, image);
   }
 
   Token *Token::newToken(int ofKind)

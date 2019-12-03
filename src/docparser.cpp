@@ -1169,7 +1169,7 @@ static void handleParameterType(DocNode *parent,QList<DocNode> &children,const Q
 {
   QCString name = g_token->name; // save token name
   QCString name1;
-  int p=0,i,l,ii;
+  int p=0,i,ii;
   while ((i=paramTypes.find('|',p))!=-1)
   {
     name1 = paramTypes.mid(p,i-p);
